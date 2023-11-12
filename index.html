@@ -288,6 +288,7 @@
             }
 
             $('.shoot').click(function(){shoot();});
+            
 
             function shoots(){
                 var bullet = '<div class="bullets" style="left:'+Math.random() * 95 + '%'+'"></div>';
@@ -297,6 +298,12 @@
                 $('.bullets').animate({ top: '100%' }, 3000);
             }
             setInterval(shoots, 1000);
+
+            
+            $('body').on('click','.obstacle',function(){
+                $(this).remove();
+            });
+           
             // Add a new obstacle every 3 seconds
             setInterval(addRandomObstacle, 3000);
         });
