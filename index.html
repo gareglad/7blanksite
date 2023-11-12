@@ -206,8 +206,7 @@
                         //console.log('Collision detected');
                         score++;
                         $('.score').html(score);
-                        var progress = parseInt($('.progress-bar').css('width'));
-                        $('.progress-bar').css('width',progress+10 + 'px');
+                        add_progress();
                         $(this).remove();
                     }
                 });
@@ -303,6 +302,7 @@ if (
     //console.log('Collision detected');
     
     $(obstacle1).remove();
+    add_progress();
 }
 });
                     var obstacle = $(this);
@@ -367,8 +367,22 @@ if (
 
             
             $('body').on('click','.obstacle',function(){
+                add_progress();
                 $(this).remove();
             });
+
+            function add_progress(){
+                
+                var progress = parseInt($('.progress-bar').css('width'));
+                
+                var new_progress = progress+10;
+                console.log(new_progress);
+                        $('.progress-bar').css('width',new_progress + 'px');
+
+                        if(new_progress >= parseInt($('.progress').css('width'))){
+                            $('.progress-bar').css('width',0);
+                        }
+            }
             
             // Add a new obstacle every 3 seconds
             setInterval(addRandomObstacle, 3000);
