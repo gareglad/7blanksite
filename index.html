@@ -73,6 +73,19 @@
         .moving {
             animation: moveAround 6s infinite;
         }
+        .shoot {
+    position: absolute;
+    top: 85%;
+    left: 10%;
+}
+.bullet {
+    background: black;
+    width: 7px;
+    height: 18px;
+    position: absolute;
+    /* top: -25px; */
+    /* left: 10px; */
+}
     </style>
 </head>
 <body>
@@ -83,6 +96,7 @@
 
       </div>
     <div id="joyDiv" style="width: 200px; height: 200px; margin-bottom: 20px;"></div>
+    <button type="button" class="btn btn-danger btn-lg shoot">Shoot</button>
     <div id="div1">
         
     </div>
@@ -178,6 +192,33 @@
                         $(this).remove();
                     }
                 });
+                var div2 = $('.bullet');
+                var div1top = parseInt(div2.css('top')) - 100;
+                var div1left = parseInt(div2.css('left')) - 100;
+                var div1top1 = parseInt(div2.css('top'));
+                var div1left1 = parseInt(div2.css('left'));
+                var div1Width = div2.width();
+                var div1Height = div2.height();
+                $('.obstacle').each(function () {
+
+                    var obstacle = $(this);
+                    var obstacleTop = obstacle.position().top;
+                    var obstacleLeft = obstacle.position().left;
+                    var obstacleWidth = obstacle.width();
+                    var obstacleHeight = obstacle.height();
+    
+                    if (
+                        div1top1 + div1Height > obstacleTop &&
+                        div1top1 < obstacleTop + obstacleHeight &&
+                        div1left1 + div1Width > obstacleLeft &&
+                        div1left1 < obstacleLeft + obstacleWidth
+                    ) {
+                        // Collision detected, handle collision (e.g., game over)
+                        //console.log('Collision detected');
+                        
+                        $(this).remove();
+                    }
+                });
             }, 50);
     
             // Function to add a random obstacle
@@ -188,6 +229,18 @@
                 obstacle.css('left', Math.random() * 95 + '%'); // Adjust the range as needed
                 $('body').append(obstacle);
             }
+
+            function shoot(){
+                var bullet = '<div class="bullet"></div>';
+                $('body').append(bullet);
+                var div1top1 = parseInt($('#div1').css('top'));
+                var div1left1 = parseInt($('#div1').css('left'));
+                $('.bullet').css('top',div1top1);
+                $('.bullet').css('left',div1left1);
+                $('.bullet').animate({ top: 0 }, 1500);
+            }
+
+            $('.shoot').click(function(){shoot();});
     
             // Add a new obstacle every 3 seconds
             setInterval(addRandomObstacle, 3000);
