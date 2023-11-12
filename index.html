@@ -82,7 +82,7 @@
 }
 .bullet {
     background: #dc3545;
-    width: 7px;
+    width: 8px;
     height: 18px;
     position: absolute;
     /* top: -25px; */
@@ -90,7 +90,7 @@
 }
 .bullets {
     background: black;
-    width: 7px;
+    width: 8px;
     height: 18px;
     position: absolute;
     /* top: -25px; */
@@ -377,8 +377,8 @@ if (
                 $('body').append(bullet);
                 var div1top1 = parseInt($('#div1').css('top'));
                 var div1left1 = parseInt($('#div1').css('left'));
-                $('.bullet').css('top',div1top1);
-                $('.bullet').css('left',div1left1);
+                $('.bullet').css('top',div1top1-20);
+                $('.bullet').css('left',div1left1 +11);
                 $('.bullet').animate({ top: -1 }, 1500);
             }
             var shoot_interval = '';
