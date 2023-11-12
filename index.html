@@ -96,8 +96,8 @@
                         div1left1 < obstacleLeft + obstacleWidth
                     ) {
                         // Collision detected, handle collision (e.g., game over)
-                        console.log('Collision detected');
-                        $(this).hide();
+                        //console.log('Collision detected');
+                        $(this).remove();
                     }
                 });
             }, 50);
@@ -105,6 +105,7 @@
             // Function to add a random obstacle
             function addRandomObstacle() {
                 var obstacle = $('<div class="obstacle"></div>');
+                console.log(Math.random() * 95);
                 obstacle.css('top', Math.random() * 95 + '%'); // Adjust the range as needed
                 obstacle.css('left', Math.random() * 95 + '%'); // Adjust the range as needed
                 $('body').append(obstacle);
