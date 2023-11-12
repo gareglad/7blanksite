@@ -270,9 +270,11 @@
                 
                 var newLeftPos = Math.floor(Math.random() * windowWidth);
                 var newTopPos = Math.floor(Math.random() * windowHeight);
-                        
-                        div3.css('top', newTopPos);
-                        div3.css('left', newLeftPos);
+                        if(newTopPos < 40){
+                            newTopPos = 40;
+                        }
+                        div3.css('top', newTopPos + 'px');
+                        div3.css('left', newLeftPos+ 'px');
 
                         add_score();
                         add_progress();
