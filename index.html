@@ -264,9 +264,15 @@
                     ) {
                         // Collision detected, handle collision (e.g., game over)
                         //console.log('Collision detected');
+
+                        var windowWidth = $(window).width();
+                var windowHeight = $(window).height();
+                
+                var newLeftPos = Math.floor(Math.random() * windowWidth);
+                var newTopPos = Math.floor(Math.random() * windowHeight);
                         
-                        div3.css('top', '70%');
-                        div3.css('left', '50%');
+                        div3.css('top', newTopPos);
+                        div3.css('left', newLeftPos);
 
                         add_score();
                         add_progress();
