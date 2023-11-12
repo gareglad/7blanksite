@@ -94,13 +94,22 @@
     /* top: -25px; */
     /* left: 10px; */
 }
+.progress {
+    width: 90%;
+    float: right;
+    margin-top: 4px;
+}
     </style>
 </head>
 <body>
     <div class="card">
         <div class="card-header">
           Score: <span class="score">0</span>
+          <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 0%"></div>
+          </div>
         </div>
+
 
       </div>
     <div id="joyDiv" style="width: 200px; height: 200px; margin-bottom: 20px;"></div>
@@ -197,6 +206,8 @@
                         //console.log('Collision detected');
                         score++;
                         $('.score').html(score);
+                        var progress = $('.progress-bar').css('width');
+                        $('.progress-bar').css('width',progress+10);
                         $(this).remove();
                     }
                 });
