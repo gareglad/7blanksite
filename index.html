@@ -323,6 +323,14 @@ if (
                         $(this).remove();
                     }
                 });
+
+                $('.bullets').each(function () {
+                    //console.log($(window).height());
+                if(parseInt($(this).css('top')) >  $(window).height()- 25){
+                    $(this).remove();
+                }
+            });
+            
             }, 50);
             
     
@@ -353,7 +361,7 @@ if (
                 $('body').append(bullet);
 
                 //$(bullet).css('left',Math.random() * 95 + '%');
-                $('.bullets').animate({ top: '100%' }, 3000);
+                $('.bullets').animate({ top: '101%' }, 3000);
             }
             setInterval(shoots, 1000);
 
@@ -361,7 +369,7 @@ if (
             $('body').on('click','.obstacle',function(){
                 $(this).remove();
             });
-           
+            
             // Add a new obstacle every 3 seconds
             setInterval(addRandomObstacle, 3000);
         });
