@@ -75,10 +75,14 @@
                     newLeft >= 0 &&
                     newTop + div1Height <= $(window).height() &&
                     newLeft + div1Width <= $(window).width()
+                    
                 ) {
                     // Update the airplane position only if it's within the bounds
                     div.css('top', newTop);
                     div.css('left', newLeft);
+                }else{
+                    div.css('top', '95%');
+                    div.css('left', '50%'); 
                 }
     
                 // Check for collision with obstacles
