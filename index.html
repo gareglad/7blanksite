@@ -14,7 +14,7 @@
     <style>
        #div1 {
            position: absolute;
-           top: 70%;
+           top: 72%;
            left: 50%;
            background: url('airplane.svg');
            background-repeat: no-repeat;
@@ -36,12 +36,12 @@
     margin-bottom: 20px;
     touch-action: none;
     position: absolute;
-    top: 75%;
+    top: 70%;
     right: 1%;
        }
        .autopilot-div{
             position: absolute;
-           top: 98%;
+           top: 96%;
            left: 2%;
        }
        .autopilot-icon{
@@ -76,7 +76,12 @@
     </style>
 </head>
 <body>
-    
+    <div class="card">
+        <div class="card-header">
+          Score: <span class="score">0</span>
+        </div>
+
+      </div>
     <div id="joyDiv" style="width: 200px; height: 200px; margin-bottom: 20px;"></div>
     <div id="div1">
         
@@ -117,6 +122,8 @@
             var joy1 = new JoyStick('joyDiv', {}, function (stickData) {
                 // Your JoyStick code here
             });
+
+            var score = 0;
     
             setInterval(function () {
                 var div = $('#div1');
@@ -166,6 +173,8 @@
                     ) {
                         // Collision detected, handle collision (e.g., game over)
                         //console.log('Collision detected');
+                        score++;
+                        $('.score').html(score);
                         $(this).remove();
                     }
                 });
