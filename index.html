@@ -86,6 +86,14 @@
     /* top: -25px; */
     /* left: 10px; */
 }
+.bullets {
+    background: black;
+    width: 7px;
+    height: 18px;
+    position: absolute;
+    /* top: -25px; */
+    /* left: 10px; */
+}
     </style>
 </head>
 <body>
@@ -219,6 +227,34 @@
                         $(this).remove();
                     }
                 });
+                var div3 = $('#div1');
+                var div1top = parseInt(div3.css('top')) - 100;
+                var div1left = parseInt(div3.css('left')) - 100;
+                var div1top1 = parseInt(div3.css('top'));
+                var div1left1 = parseInt(div3.css('left'));
+                var div1Width = div3.width();
+                var div1Height = div3.height();
+                $('.bullets').each(function () {
+
+                    var obstacle = $(this);
+                    var obstacleTop = obstacle.position().top;
+                    var obstacleLeft = obstacle.position().left;
+                    var obstacleWidth = obstacle.width();
+                    var obstacleHeight = obstacle.height();
+    
+                    if (
+                        div1top1 + div1Height > obstacleTop &&
+                        div1top1 < obstacleTop + obstacleHeight &&
+                        div1left1 + div1Width > obstacleLeft &&
+                        div1left1 < obstacleLeft + obstacleWidth
+                    ) {
+                        // Collision detected, handle collision (e.g., game over)
+                        //console.log('Collision detected');
+                        
+                        div3.css('top', '95%');
+                        div3.css('left', '50%');
+                    }
+                });
             }, 50);
     
             // Function to add a random obstacle
@@ -241,7 +277,15 @@
             }
 
             $('.shoot').click(function(){shoot();});
-    
+
+            function shoots(){
+                var bullet = '<div class="bullets" style="left:'+Math.random() * 95 + '%'+'"></div>';
+                $('body').append(bullet);
+
+                //$(bullet).css('left',Math.random() * 95 + '%');
+                $('.bullets').animate({ top: '100%' }, 3000);
+            }
+            setInterval(shoots, 1000);
             // Add a new obstacle every 3 seconds
             setInterval(addRandomObstacle, 3000);
         });
