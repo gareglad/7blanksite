@@ -373,11 +373,13 @@ if (
                 $('.bullet').css('left',div1left1);
                 $('.bullet').animate({ top: -1 }, 1500);
             }
-
-            // $('.shoot').click(function(e){
-            //     shoot();
-            //     e.preventDefault();
-            // });
+            var shoot_interval = '';
+            $('.shoot').mousedown(function(){
+                shoot_interval = setInterval(shoot,1000);
+            });
+            $('.shoot').mouseup(function(){
+                clearInterval(shoot_interval);
+            });
             
 
             function shoots(){
@@ -417,28 +419,8 @@ if (
             
             // Add a new obstacle every 3 seconds
             setInterval(addRandomObstacle, 3000);
-
-            var shooting = false;
-
-$('.shoot').on('touchstart click', function (e) {
-    e.preventDefault();
-    shoot();
-    shooting = true;
-});
-
-$(document).on('touchend mouseup', function () {
-    shooting = false;
-});
-
-function handleShoot() {
-    if (shooting) {
-        shoot();
-    }
-}
-setInterval(handleShoot, 50);
         });
-        
-
+    
     </script>
 </body>
 </html>
