@@ -39,6 +39,40 @@
     top: 75%;
     right: 1%;
        }
+       .autopilot-div{
+            position: absolute;
+           top: 98%;
+           left: 2%;
+       }
+       .autopilot-icon{
+        
+           background: url('airplane.svg');
+           background-repeat: no-repeat;
+           background-size: contain;
+           width: 15px;
+           height: 15px;
+       }
+       @keyframes moveAround {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(50px, 0);
+            }
+            50% {
+                transform: translate(0, 50px);
+            }
+            75% {
+                transform: translate(-50px, 0);
+            }
+            100% {
+                transform: translate(0, -50px);
+            }
+        }
+
+        .moving {
+            animation: moveAround 6s infinite;
+        }
     </style>
 </head>
 <body>
@@ -47,10 +81,39 @@
     <div id="div1">
         
     </div>
+    <div class="form-check form-switch autopilot-div">
+        <input class="form-check-input autopilot" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+        <label class="form-check-label autopilot-icon" for="flexSwitchCheckChecked"></label>
+      </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
+            var autopilot_interval = '';
+            $('.autopilot').on('change',function(){
+                //$('#div1').toggleClass('moving');
+                if($(this).is(':checked')){
+                    autopilot_interval = setInterval(autopilot, 3000);
+                }else{
+                    clearInterval(autopilot_interval);
+                }
+            });
+            
+            function autopilot(){
+                console.log('!');
+                var windowWidth = $(window).width() - 100;
+                var windowHeight = $(window).height() - 100;
+                
+                var newLeftPos = Math.floor(Math.random() * windowWidth);
+                var newTopPos = Math.floor(Math.random() * windowHeight);
+                $("#div1").animate({ top: newTopPos, left: newLeftPos }, 1500);
+                // $('#div1').css({
+                //     left: newLeftPos,
+                //     top: newTopPos
+                // });
+            }
+                
+
             var joy1 = new JoyStick('joyDiv', {}, function (stickData) {
                 // Your JoyStick code here
             });
