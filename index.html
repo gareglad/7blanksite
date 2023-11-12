@@ -204,8 +204,7 @@
                     ) {
                         // Collision detected, handle collision (e.g., game over)
                         //console.log('Collision detected');
-                        score++;
-                        $('.score').html(score);
+                        add_score();
                         add_progress();
                         $(this).remove();
                     }
@@ -233,7 +232,8 @@
                     ) {
                         // Collision detected, handle collision (e.g., game over)
                         //console.log('Collision detected');
-                        
+                        add_score();
+                        add_progress();
                         $(this).remove();
                     }
                 });
@@ -263,6 +263,9 @@
                         
                         div3.css('top', '95%');
                         div3.css('left', '50%');
+
+                        add_score();
+                        add_progress();
                     }
                 });
 
@@ -302,6 +305,7 @@ if (
     //console.log('Collision detected');
     
     $(obstacle1).remove();
+    add_score();
     add_progress();
 }
 });
@@ -319,7 +323,8 @@ if (
                     ) {
                         // Collision detected, handle collision (e.g., game over)
                         //console.log('Collision detected');
-                        
+                        add_score();
+    add_progress();
                         $(this).remove();
                     }
                 });
@@ -329,6 +334,14 @@ if (
                 if(parseInt($(this).css('top')) >  $(window).height()- 25){
                     $(this).remove();
                 }
+                
+            });
+            $('.bullet').each(function () {
+                    //console.log($(window).height());
+                if(parseInt($(this).css('top')) < 0){
+                    $(this).remove();
+                }
+                
             });
             
             }, 50);
@@ -350,7 +363,7 @@ if (
                 var div1left1 = parseInt($('#div1').css('left'));
                 $('.bullet').css('top',div1top1);
                 $('.bullet').css('left',div1left1);
-                $('.bullet').animate({ top: 0 }, 1500);
+                $('.bullet').animate({ top: -1 }, 1500);
             }
 
             $('.shoot').click(function(){shoot();});
@@ -367,6 +380,7 @@ if (
 
             
             $('body').on('click','.obstacle',function(){
+                add_score();
                 add_progress();
                 $(this).remove();
             });
@@ -382,6 +396,12 @@ if (
                         if(new_progress >= parseInt($('.progress').css('width'))){
                             $('.progress-bar').css('width',0);
                         }
+            }
+
+            function add_score(){
+                var score = $('.score').html();
+                score++;
+                        $('.score').html(score);
             }
             
             // Add a new obstacle every 3 seconds
