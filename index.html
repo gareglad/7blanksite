@@ -95,7 +95,7 @@
     /* left: 10px; */
 }
 .progress {
-    width: 90%;
+    width: 80%;
     float: right;
     margin-top: 4px;
 }
@@ -206,8 +206,8 @@
                         //console.log('Collision detected');
                         score++;
                         $('.score').html(score);
-                        var progress = $('.progress-bar').css('width');
-                        $('.progress-bar').css('width',progress+10);
+                        var progress = parseInt($('.progress-bar').css('width'));
+                        $('.progress-bar').css('width',progress+10 + 'px');
                         $(this).remove();
                     }
                 });
