@@ -103,7 +103,7 @@
 }
     </style>
 </head>
-<body>
+<body id="#touchArea">
     <div class="card">
         <div class="card-header">
           Score: <span class="score">0</span>
@@ -418,6 +418,50 @@ if (
             // Add a new obstacle every 3 seconds
             setInterval(addRandomObstacle, 3000);
         });
+          // Array to store touch points
+    var touchPoints = [];
+
+// Function to handle touch start event
+function handleTouchStart(event) {
+  event.preventDefault();
+
+  // Loop through all touch points and add them to the array
+  $.each(event.originalEvent.changedTouches, function (index, touch) {
+    touchPoints.push({ id: touch.identifier, x: touch.clientX, y: touch.clientY });
+  });
+}
+
+// Function to handle touch move event
+function handleTouchMove(event) {
+  event.preventDefault();
+
+  // Loop through all touch points and update their positions in the array
+  $.each(event.originalEvent.changedTouches, function (index, touch) {
+    var existingTouch = touchPoints.find(p => p.id === touch.identifier);
+    if (existingTouch) {
+      existingTouch.x = touch.clientX;
+      existingTouch.y = touch.clientY;
+    }
+  });
+
+  // Your custom logic for handling touch move
+  // For example, you can draw lines or move elements based on touch positions
+}
+
+// Function to handle touch end event
+function handleTouchEnd(event) {
+  event.preventDefault();
+
+  // Loop through all touch points and remove them from the array
+  $.each(event.originalEvent.changedTouches, function (index, touch) {
+    touchPoints = touchPoints.filter(p => p.id !== touch.identifier);
+  });
+}
+
+// Add event listeners to the touch area using jQuery
+$('#touchArea').on('touchstart', handleTouchStart);
+$('#touchArea').on('touchmove', handleTouchMove);
+$('#touchArea').on('touchend', handleTouchEnd);
     </script>
     
     </script>
