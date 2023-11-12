@@ -266,7 +266,65 @@
                         div3.css('left', '50%');
                     }
                 });
+
+                var div4 = $('.bullets');
+                var div1top = parseInt(div4.css('top')) - 100;
+                var div1left = parseInt(div4.css('left')) - 100;
+                var div1top1 = parseInt(div4.css('top'));
+                var div1left1 = parseInt(div4.css('left'));
+                var div1Width = div4.width();
+                var div1Height = div4.height();
+
+                
+                $('.obstacle').each(function () {
+                    var obstacle1 = $(this);
+                    $('.bullets').each(function () {
+                        var div5 = obstacle1
+                var div1top = parseInt(div5.css('top')) - 100;
+                var div1left = parseInt(div5.css('left')) - 100;
+                var div1top1 = parseInt(div5.css('top'));
+                var div1left1 = parseInt(div5.css('left'));
+                var div1Width = div5.width();
+                var div1Height = div5.height();
+
+var obstacle = $(this);
+var obstacleTop = obstacle.position().top;
+var obstacleLeft = obstacle.position().left;
+var obstacleWidth = obstacle.width();
+var obstacleHeight = obstacle.height();
+
+if (
+    div1top1 + div1Height > obstacleTop &&
+    div1top1 < obstacleTop + obstacleHeight &&
+    div1left1 + div1Width > obstacleLeft &&
+    div1left1 < obstacleLeft + obstacleWidth
+) {
+    // Collision detected, handle collision (e.g., game over)
+    //console.log('Collision detected');
+    
+    $(obstacle1).remove();
+}
+});
+                    var obstacle = $(this);
+                    var obstacleTop = obstacle.position().top;
+                    var obstacleLeft = obstacle.position().left;
+                    var obstacleWidth = obstacle.width();
+                    var obstacleHeight = obstacle.height();
+    
+                    if (
+                        div1top1 + div1Height > obstacleTop &&
+                        div1top1 < obstacleTop + obstacleHeight &&
+                        div1left1 + div1Width > obstacleLeft &&
+                        div1left1 < obstacleLeft + obstacleWidth
+                    ) {
+                        // Collision detected, handle collision (e.g., game over)
+                        //console.log('Collision detected');
+                        
+                        $(this).remove();
+                    }
+                });
             }, 50);
+            
     
             // Function to add a random obstacle
             function addRandomObstacle() {
