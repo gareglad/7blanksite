@@ -374,10 +374,10 @@ if (
                 $('.bullet').animate({ top: -1 }, 1500);
             }
             var shoot_interval = '';
-            $('.shoot').mousedown(function(){
+            $('.shoot').on('touchstart mousedown', function (){
                 shoot_interval = setInterval(shoot,1000);
             });
-            $('.shoot').mouseup(function(){
+            $('.shoot').on('touchend mouseup', function () {
                 clearInterval(shoot_interval);
             });
             
